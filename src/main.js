@@ -26,6 +26,8 @@ Firebase.initializeApp(config)
 //
 // let someRef = db.ref('ref')
 
+// let database = Firebase.database()
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
