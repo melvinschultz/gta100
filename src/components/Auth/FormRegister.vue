@@ -1,5 +1,5 @@
 <template>
-  <div class="authentication" v-else>
+  <div class="FormRegister" v-else>
     <!--<h1>Register</h1>-->
     <div class="row">
       <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div class="col s10 offset-s1">
-        <button @click="register" class="btn btn-large waves-effect waves-light green darken-3" name="action">Register
+        <button @click.prevent="handleSubmit" class="btn btn-large waves-effect waves-light green darken-3" name="action" type="submit">Register
           <!--<i class="material-icons right">send</i>-->
         </button>
       </div>
@@ -33,30 +33,32 @@
 </template>
 
 <script>
-export default {
-  name: 'FormRegister',
-  data () {
-    return {
-      form: {
-        username: '',
-        usernameErrorMessage: null,
-        email: '',
-        emailErrorMessage: null,
-        password: '',
-        passwordErrorMessage: null
+  import { REGISTER_MANUALLY } from '../../store/modules/auth/types'
+
+  export default {
+    name: 'FormRegister',
+    data () {
+      return {
+        form: {
+          username: '',
+          usernameErrorMessage: null,
+          email: '',
+          emailErrorMessage: null,
+          password: '',
+          passwordErrorMessage: null
+        }
+      }
+    },
+    methods: {
+      handleSubmit () {
+        this.$store.dispatch(REGISTER_MANUALLY, {
+          username: this.form.username,
+          password: this.form.password,
+          umNewsletter: this.form.newsLetter
+        })
       }
     }
-  },
-  methods: {
-    handleSubmit () {
-      this.$store.dispatch(SIGN_UP_MANUALLY, {
-        username: this.form.username,
-        email: this.form.email,
-        password: this.form.password
-      })
-    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

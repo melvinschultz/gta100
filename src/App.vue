@@ -1,21 +1,25 @@
 <template>
   <div id="app">
     <img src="./assets/logo1.png">
-    <router-view></router-view>
+    <authentication-page v-if="!isLoggedIn"></authentication-page>
+    <!--<router-view></router-view>-->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      user: {
-        authenticated: false
+  import AuthenticationPage from './components/Auth/AuthenticationPage.vue'
+
+  export default {
+    name: 'app',
+    components: {
+      AuthenticationPage
+    },
+    computed: {
+      isLoggedIn () {
+        return this.$store.state.auth.connected
       }
     }
   }
-}
 </script>
 
 <style>

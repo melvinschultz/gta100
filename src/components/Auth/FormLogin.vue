@@ -1,5 +1,5 @@
 <template>
-  <div class="authentication" v-if="account">
+  <div class="FormLogin" v-if="account">
     <!--<h1>Login</h1>-->
     <div class="row">
       <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>

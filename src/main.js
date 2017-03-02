@@ -4,12 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import * as Firebase from 'firebase'
 import VueFire from 'vuefire'
 import Materials from 'vue-material'
+import store from './store'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(Vuex)
 Vue.use(VueFire)
 Vue.use(Materials)
 
@@ -33,7 +36,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/auth',
-      component: require('./components/pages/Auth.vue'),
+      component: require('./components/Auth/AuthenticationPage.vue'),
       name: 'Auth'
     },
     {
@@ -52,6 +55,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
+  store,
+  render: h => h(App)
 })
