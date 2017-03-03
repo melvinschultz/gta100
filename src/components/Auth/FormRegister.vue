@@ -1,5 +1,5 @@
 <template>
-  <div class="FormRegister" v-else>
+  <div class="FormRegister">
     <!--<h1>Register</h1>-->
     <div class="row">
       <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>
@@ -23,20 +23,19 @@
     </div>
     <div class="row">
       <div class="col s10 offset-s1">
-        <button @click.prevent="handleSubmit" class="btn btn-large waves-effect waves-light green darken-3" name="action" type="submit">Register
+        <button @click="" class="btn btn-large waves-effect waves-light green darken-3" name="action" type="submit">Register
           <!--<i class="material-icons right">send</i>-->
         </button>
       </div>
     </div>
-    <p @click="account = !account">Already registered. Login me</p>
+    <p @click="isSignedUp">Already registered. Login me</p>
   </div>
 </template>
 
 <script>
-  import { REGISTER_MANUALLY } from '../../store/modules/auth/types'
-
   export default {
     name: 'FormRegister',
+    props: ['signUp'],
     data () {
       return {
         form: {
@@ -50,12 +49,9 @@
       }
     },
     methods: {
-      handleSubmit () {
-        this.$store.dispatch(REGISTER_MANUALLY, {
-          username: this.form.username,
-          password: this.form.password,
-          umNewsletter: this.form.newsLetter
-        })
+      isSignedUp: function () {
+        this.signUp = !this.signUp
+        this.$emit('isSignedUp')
       }
     }
   }

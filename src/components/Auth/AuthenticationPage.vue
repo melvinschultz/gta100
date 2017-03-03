@@ -1,7 +1,7 @@
 <template>
   <div class="AuthenticationPage">
-    <form-login></form-login>
-    <form-register></form-register>
+    <form-login v-if="signUp" v-on:isSignedUp="isSignedUp"></form-login>
+    <form-register v-else v-on:isSignedUp="isSignedUp"></form-register>
   </div>
 </template>
 
@@ -18,6 +18,11 @@
     data () {
       return {
         signUp: true
+      }
+    },
+    methods: {
+      isSignedUp: function () {
+        this.signUp = !this.signUp
       }
     }
   }

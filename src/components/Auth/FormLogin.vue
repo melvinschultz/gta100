@@ -1,5 +1,5 @@
 <template>
-  <div class="FormLogin" v-if="account">
+  <div class="FormLogin">
     <!--<h1>Login</h1>-->
     <div class="row">
       <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>
@@ -23,13 +23,14 @@
         </button>
       </div>
     </div>
-    <p @click="account = !account">Do not have an account ? Register me now</p>
+    <p @click="isSignedUp">Do not have an account ? Register me now</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'FormLogin',
+  props: ['signUp'],
   data () {
     return {
       form: {
@@ -38,6 +39,12 @@ export default {
         password: '',
         passwordErrorMessage: null
       }
+    }
+  },
+  methods: {
+    isSignedUp: function () {
+      this.signUp = !this.signUp
+      this.$emit('isSignedUp')
     }
   }
 }
