@@ -70,19 +70,6 @@
           password: this.form.password
         })
       }
-//      register () {
-//        console.log('Register')
-//        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-//          this.successMessage = 'User account created with success'
-//          console.log('User account created with success')
-//        }, (error) => {
-//           Handle Errors here.
-//          this.errorCode = error.code
-//          this.errorMessage = error.message
-//          console.log(this.errorCode)
-//          console.log(this.errorMessage)
-//        })
-//      }
     }
   }
 </script>
