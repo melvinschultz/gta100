@@ -21,7 +21,7 @@
       }
     },
     methods: {
-      isSignedUp: function () {
+      isSignedUp () {
         this.signUp = !this.signUp
       }
     }

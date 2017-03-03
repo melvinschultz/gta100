@@ -1,10 +1,25 @@
 import * as Firebase from 'firebase'
 
 export const registerManually = (username, email, password) => {
-  console.log(email + password)
+  // console.log(email + password)
   Firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
     // this.successMessage = 'User account created with success'
     console.log('User account created with success')
+  }, (error) => {
+    // Handle Errors here.
+    console.log(error)
+    // this.errorCode = error.code
+    // this.errorMessage = error.message
+    // console.log(this.errorCode)
+    // console.log(this.errorMessage)
+  })
+}
+
+export const loginManually = (email, password) => {
+  console.log(email + password)
+  Firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+    console.log('User is logged in')
+    this.$router.push('/home')
   }, (error) => {
     // Handle Errors here.
     console.log(error)

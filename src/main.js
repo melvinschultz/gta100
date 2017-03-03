@@ -5,7 +5,7 @@ import App from './App'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
-import * as Firebase from 'firebase'
+import * as firebase from 'firebase'
 import VueFire from 'vuefire'
 import Materials from 'vue-material'
 import store from './store'
@@ -23,7 +23,9 @@ let config = {
   storageBucket: 'gta100-d0537.appspot.com',
   messagingSenderId: '483960769224'
 }
-Firebase.initializeApp(config)
+firebase.initializeApp(config)
+
+window.firebase = firebase
 // let app = Firebase.initializeApp(config)
 // let db = app.database()
 //

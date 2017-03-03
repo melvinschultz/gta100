@@ -6,11 +6,11 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s10 offset-s1">
-            <input v-model="email" id="email" type="email" class="validate">
+            <input v-model="form.email" id="email" type="email" class="validate">
             <label for="email">Email</label>
           </div>
           <div class="input-field col s10 offset-s1">
-            <input v-model="password" id="password" type="password" class="validate">
+            <input v-model="form.password" id="password" type="password" class="validate">
             <label for="password">Password</label>
           </div>
         </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <div class="col s10 offset-s1">
-        <button @click="login" class="btn btn-large waves-effect waves-light green darken-3" name="action">Login
+        <button @click.prevent="handleSubmit" class="btn btn-large waves-effect waves-light green darken-3" name="action">Login
           <!--<i class="material-icons right">send</i>-->
         </button>
       </div>
@@ -28,26 +28,42 @@
 </template>
 
 <script>
-export default {
-  name: 'FormLogin',
-  props: ['signUp'],
-  data () {
-    return {
-      form: {
-        email: '',
-        emailErrorMessage: null,
-        password: '',
-        passwordErrorMessage: null
+  import { LOGIN_MANUALLY } from '../../store/modules/auth/types'
+
+  export default {
+    name: 'FormLogin',
+    props: {
+      signUp: {
+        type: Boolean,
+        required: true
+      }
+    },
+    data () {
+      return {
+        form: {
+          email: '',
+          emailErrorMessage: null,
+          password: '',
+          passwordErrorMessage: null,
+          successMessage: null,
+          errorMessage: null,
+          errorCode: ''
+        }
+      }
+    },
+    methods: {
+      isSignedUp () {
+        this.signUp = !this.signUp
+        this.$emit('isSignedUp')
+      },
+      handleSubmit () {
+        this.$store.dispatch(LOGIN_MANUALLY, {
+          email: this.form.email,
+          password: this.form.password
+        })
       }
     }
-  },
-  methods: {
-    isSignedUp: function () {
-      this.signUp = !this.signUp
-      this.$emit('isSignedUp')
-    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
