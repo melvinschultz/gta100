@@ -1,7 +1,7 @@
 <template>
   <div class="AuthenticationPage">
-    <form-login v-if="signUp" v-on:isSignedUp="isSignedUp"></form-login>
-    <form-register v-else v-on:isSignedUp="isSignedUp"></form-register>
+    <form-login v-if="signUp" v-on:isNotSignedUp="toggleSignUpData"></form-login>
+    <form-register v-else v-on:isSignedUp="toggleSignUpData"></form-register>
   </div>
 </template>
 
@@ -21,7 +21,7 @@
       }
     },
     methods: {
-      isSignedUp () {
+      toggleSignUpData () {
         this.signUp = !this.signUp
       }
     }

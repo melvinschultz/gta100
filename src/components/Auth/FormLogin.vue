@@ -2,7 +2,7 @@
   <div class="FormLogin">
     <!--<h1>Login</h1>-->
     <div class="row">
-      <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>
+      <!--<p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>-->
       <form class="col s12">
         <div class="row">
           <div class="input-field col s10 offset-s1">
@@ -23,41 +23,31 @@
         </button>
       </div>
     </div>
-    <p @click="isSignedUp">Do not have an account ? Register me now</p>
+    <p @click="isNotSignedUp">Do not have an account ? Register me now</p>
   </div>
 </template>
 
 <script>
-  import { LOGIN_MANUALLY } from '../../store/modules/auth/types'
+  import { LOG_IN_FROM_CREDENTIALS } from '../../store/modules/auth/types'
 
   export default {
     name: 'FormLogin',
-    props: {
-      signUp: {
-        type: Boolean,
-        required: true
-      }
-    },
     data () {
       return {
         form: {
           email: '',
           emailErrorMessage: null,
           password: '',
-          passwordErrorMessage: null,
-          successMessage: null,
-          errorMessage: null,
-          errorCode: ''
+          passwordErrorMessage: null
         }
       }
     },
     methods: {
-      isSignedUp () {
-        this.signUp = !this.signUp
-        this.$emit('isSignedUp')
+      isNotSignedUp () {
+        this.$emit('isNotSignedUp')
       },
       handleSubmit () {
-        this.$store.dispatch(LOGIN_MANUALLY, {
+        this.$store.dispatch(LOG_IN_FROM_CREDENTIALS, {
           email: this.form.email,
           password: this.form.password
         })

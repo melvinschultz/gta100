@@ -2,8 +2,8 @@
   <div class="FormRegister">
     <!--<h1>Register</h1>-->
     <div class="row">
-      <p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>
-      <p class="green-text text-darken-2" v-if="successMessage != ''">{{ successMessage }}</p>
+      <!--<p class="red-text text-darken-2" v-if="errorMessage != ''">{{ errorMessage }}</p>-->
+      <!--<p class="green-text text-darken-2" v-if="successMessage != ''">{{ successMessage }}</p>-->
       <form class="col s12">
         <div class="row">
           <div class="input-field col s10 offset-s1">
@@ -37,12 +37,6 @@
 
   export default {
     name: 'FormRegister',
-    props: {
-      signUp: {
-        type: Boolean,
-        required: true
-      }
-    },
     data () {
       return {
         form: {
@@ -51,16 +45,12 @@
           email: '',
           emailErrorMessage: null,
           password: '',
-          passwordErrorMessage: null,
-          successMessage: null,
-          errorMessage: null,
-          errorCode: ''
+          passwordErrorMessage: null
         }
       }
     },
     methods: {
       isSignedUp () {
-        this.signUp = !this.signUp
         this.$emit('isSignedUp')
       },
       handleSubmit () {
