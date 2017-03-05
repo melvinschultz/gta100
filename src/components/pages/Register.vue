@@ -49,7 +49,8 @@
         email: '',
         password: '',
         password_confirmation: '',
-        errors: []
+        errors: [],
+        usersRef: firebase.database().ref('users')
       }
     },
     methods: {
@@ -62,6 +63,9 @@
               photoURL: 'http://www.gravatar.com/avatar/' + md5(user.email) + '?d=identicon'
             }).then(() => {
               // Enregistrement de l'utilisateur en bdd
+              this.saveUserToUsersRef(user).then(() => {
+                this.$router.push('/login')
+              })
             }, error => {
               console.log(error)
               this.errors.push(error.message)
@@ -71,6 +75,13 @@
             this.errors.push(error.message)
           })
         }
+      },
+      saveUserToUsersRef (user) {
+        return this.usersRef.child(user.uid).set({
+          id: user.uid,
+          username: user.displayName,
+          avatar: user.photoURL
+        })
       },
       isEmpty () {
         if (this.username.length === 0 || this.email.length === 0 || this.password.length === 0 || this.password_confirmation.length === 0) {
