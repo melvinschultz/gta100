@@ -16,6 +16,7 @@
     "firebase": "^3.6.9",
     "kuzzle-sdk": "^3.2.0",
     "materialize-css": "^0.98.0",
+    "md5": "^2.2.1",
     "vue": "^2.1.10",
     "vue-material": "^0.7.1",
     "vue-resource": "^1.2.0",

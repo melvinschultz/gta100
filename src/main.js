@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
-import * as Firebase from 'firebase'
+import firebase from 'firebase'
 import VueFire from 'vuefire'
 import Materials from 'vue-material'
 
@@ -20,24 +20,26 @@ let config = {
   storageBucket: 'gta100-d0537.appspot.com',
   messagingSenderId: '483960769224'
 }
-Firebase.initializeApp(config)
-// let app = Firebase.initializeApp(config)
-// let db = app.database()
-//
-// let someRef = db.ref('ref')
+firebase.initializeApp(config)
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/auth',
-      component: require('./components/pages/Auth.vue'),
-      name: 'Auth'
+      component: require('./components/pages/Auth.vue')
+    },
+    {
+      path: '/login',
+      component: require('./components/pages/Login.vue')
+    },
+    {
+      path: '/register',
+      component: require('./components/pages/Register.vue')
     },
     {
       path: '/home',
-      component: require('./components/pages/Home.vue'),
-      name: 'Home'
+      component: require('./components/pages/Home.vue')
     },
     {
       path: '*',
