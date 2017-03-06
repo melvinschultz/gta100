@@ -42,11 +42,39 @@
     methods: {
       login () {
         this.errors = []
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
-
-        }).catch(error => {
-          console.log(error)
-        })
+        if (this.isFormValid()) {
+          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
+            console.log(user)
+            this.$store.dispatch('setUser', user)
+            this.$router.push('/home')
+          }).catch(error => {
+            console.log(error)
+            this.errors.push(error.message)
+          })
+        }
+      },
+      isEmpty () {
+        if (this.email.length === 0 || this.password.length === 0) {
+          return true
+        }
+        return false
+      },
+      passwordValid () {
+        if (this.password.length < 6) {
+          return false
+        }
+        return true
+      },
+      isFormValid () {
+        if (this.isEmpty()) {
+          this.errors.push('Veuillez remplir tous les champs')
+          return false
+        }
+        if (!this.passwordValid()) {
+          this.errors.push('Email ou password incorrect')
+          return false
+        }
+        return true
       }
     }
   }

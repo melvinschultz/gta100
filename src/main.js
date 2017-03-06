@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import firebase from 'firebase'
 import VueFire from 'vuefire'
 import Materials from 'vue-material'
+import store from './store'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -39,7 +40,14 @@ const router = new VueRouter({
     },
     {
       path: '/home',
-      component: require('./components/pages/Home.vue')
+      component: require('./components/pages/Home.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!firebase.auth().currentUser) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
     },
     {
       path: '*',
@@ -48,10 +56,17 @@ const router = new VueRouter({
   ]
 })
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+const unsuscribe = firebase.auth().onAuthStateChanged(user => {
+  store.dispatch('setUser', user)
+
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<App/>',
+    components: { App }
+  })
+
+  unsuscribe()
 })
