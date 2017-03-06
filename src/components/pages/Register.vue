@@ -1,11 +1,12 @@
 <template>
   <div class="authentication">
     <div class="row">
-      <div class="errors" v-for="error in errors">
-        <p class="red-text text-darken-3">{{ error }}</p>
-      </div>
       <form class="col s12">
         <div class="row">
+          <div class="errors" v-for="error in errors">
+            <p class="red-text center">{{ error }}</p>
+          </div>
+
           <div class="input-field col s10 offset-s1">
             <label for="username">Pseudo</label>
             <input id="username" type="text" class="validate" v-model.trim="username">
@@ -29,10 +30,10 @@
       </form>
     </div>
     <div class="row">
-      <button @click.prevent="register" class="btn waves-effect waves-light" name="">S'inscrire</button>
+      <button @click.prevent="register" class="btn waves-effect waves-light green darken-3" name="action">S'inscrire</button>
     </div>
     <div class="row">
-      <router-link to="login">Déjà inscrit ? Se connecter</router-link>
+      <router-link to="login" class="white-text">Déjà inscrit ? Se connecter</router-link>
     </div>
   </div>
 </template>

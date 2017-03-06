@@ -27,10 +27,6 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/auth',
-      component: require('./components/pages/Auth.vue')
-    },
-    {
       path: '/login',
       component: require('./components/pages/Login.vue')
     },

@@ -1,11 +1,12 @@
 <template>
   <div class="authentication">
     <div class="row">
-      <div class="errors" v-for="error in errors">
-        <p class="red-text text-darken-3">{{ error }}</p>
-      </div>
       <form class="col s12">
         <div class="row">
+          <div class="errors" v-for="error in errors">
+            <p class="red-text center">{{ error }}</p>
+          </div>
+
           <div class="input-field col s10 offset-s1">
             <label for="email">Email</label>
             <input id="email" type="email" class="validate" v-model.trim="email">
@@ -19,10 +20,14 @@
       </form>
     </div>
     <div class="row">
-      <button @click.prevent="login" class="btn waves-effect waves-light" name="action">Se connecter</button>
+      <button @click.prevent="login" class="btn waves-effect waves-light green darken-3" name="action">Se connecter</button>
     </div>
     <div class="row">
-      <router-link to="register">Pas encore de compte ? S'incrire</router-link>
+      <router-link to="register" class="white-text">Pas encore de compte ? S'incrire</router-link>
+    </div>
+    <div class="row btn-facebook">
+      <button class="btn waves-effect waves-light blue darken-3" name="action">Se connecter via facebook</button>
+      <p class="grey-text text-darken-3">* La connexion via Facebook n'est pas encore disponible</p>
     </div>
   </div>
 </template>
@@ -81,5 +86,7 @@
 </script>
 
 <style scoped>
-
+  .btn-facebook {
+    margin-top: 20%;
+  }
 </style>
