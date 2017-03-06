@@ -26,7 +26,7 @@
       <router-link to="register" class="white-text">Pas encore de compte ? S'incrire</router-link>
     </div>
     <div class="row btn-facebook">
-      <button class="btn waves-effect waves-light blue darken-3" name="action">Se connecter via facebook</button>
+      <button class="btn disabled waves-effect waves-light blue darken-3" name="action">Se connecter via facebook</button>
       <p class="grey-text text-darken-3">* La connexion via Facebook n'est pas encore disponible</p>
     </div>
   </div>
