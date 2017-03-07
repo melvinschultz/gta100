@@ -35,6 +35,17 @@ const router = new VueRouter({
       component: require('./components/pages/Register.vue')
     },
     {
+      path: '/favorite-perso',
+      component: require('./components/pages/FavoritePerso.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!firebase.auth().currentUser) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
+    },
+    {
       path: '/home',
       component: require('./components/pages/Home.vue'),
       beforeEnter: (to, from, next) => {

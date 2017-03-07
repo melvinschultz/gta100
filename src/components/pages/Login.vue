@@ -1,5 +1,6 @@
 <template>
   <div class="authentication">
+    <img src="../../assets/logo1.png" alt="logo">
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -51,7 +52,7 @@
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
             console.log(user)
             this.$store.dispatch('setUser', user)
-            this.$router.push('/home')
+            this.$router.push('/favorite-perso')
           }).catch(error => {
             console.log(error)
             this.errors.push(error.message)
