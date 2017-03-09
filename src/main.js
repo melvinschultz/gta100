@@ -46,6 +46,17 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/menu',
+      component: require('./components/pages/Menu.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!firebase.auth().currentUser) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
+    },
+    {
       path: '*',
       redirect: '/home'
     }

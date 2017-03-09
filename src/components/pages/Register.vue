@@ -1,5 +1,6 @@
 <template>
   <div class="authentication">
+    <img src="../../assets/logo1.png" alt="logo">
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -115,5 +116,7 @@
 </script>
 
 <style scoped>
-
+  .authentication {
+    margin-top: 20px;
+  }
 </style>
