@@ -14,7 +14,7 @@
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
   export default {
-    name: 'favorite-perso',
+    name: 'swiper-component',
     data () {
       return {
         swiperOption: {
@@ -34,6 +34,9 @@
     computed: {
       swiper () {
         return this.$refs.choosePerso.swiper
+      },
+      swiperSlideIndex () {
+        return this.$refs.choosePerso.swiper.activeIndex
       }
     }
   }
