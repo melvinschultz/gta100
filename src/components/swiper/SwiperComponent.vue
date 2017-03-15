@@ -22,7 +22,10 @@
           prevButton: '.swiper-button-prev',
           nextButton: '.swiper-button-next',
           onSlideChangeStart (swiper) {
-            console.log(swiper.activeIndex)
+//            console.log(swiper.activeIndex)
+            this.indexSlide = swiper.activeIndex
+//            console.log(this.indexSlide)
+            this.$emit('slideChange', this.indexSlide)
           }
         }
       }
@@ -34,9 +37,6 @@
     computed: {
       swiper () {
         return this.$refs.choosePerso.swiper
-      },
-      swiperSlideIndex () {
-        return this.$refs.choosePerso.swiper.activeIndex
       }
     }
   }
