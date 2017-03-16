@@ -21,11 +21,8 @@
           autoplay: false,
           prevButton: '.swiper-button-prev',
           nextButton: '.swiper-button-next',
-          onSlideChangeStart (swiper) {
-//            console.log(swiper.activeIndex)
-            this.indexSlide = swiper.activeIndex
-//            console.log(this.indexSlide)
-            this.$emit('slideChange', this.indexSlide)
+          onSlideChangeStart: (swiper) => {
+            this.emitActiveIndex(swiper.activeIndex)
           }
         }
       }
@@ -37,6 +34,11 @@
     computed: {
       swiper () {
         return this.$refs.choosePerso.swiper
+      }
+    },
+    methods: {
+      emitActiveIndex (activeIndex) {
+        this.$emit('slideChange', activeIndex)
       }
     }
   }

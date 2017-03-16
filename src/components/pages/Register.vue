@@ -82,8 +82,7 @@
         return this.usersRef.child(user.uid).set({
           id: user.uid,
           username: user.displayName,
-          avatar: user.photoURL,
-          theme: ''
+          avatar: user.photoURL
         })
       },
       isEmpty () {
