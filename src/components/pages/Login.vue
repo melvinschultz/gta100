@@ -42,7 +42,8 @@
       return {
         email: '',
         password: '',
-        errors: []
+        errors: [],
+        usersRef: firebase.database().ref('users')
       }
     },
     methods: {
@@ -52,6 +53,10 @@
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
             console.log(user)
             this.$store.dispatch('setUser', user)
+            this.usersRef.child(user.uid).once('value').then((snapshot) => {
+//              console.log(snapshot.val().theme)
+              this.$store.dispatch('setUserTheme', snapshot.val().theme)
+            })
             this.$router.push('/favorite-perso')
           }).catch(error => {
             console.log(error)
